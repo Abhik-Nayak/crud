@@ -1,0 +1,23 @@
+{
+    "user":[
+        {
+            "name":"Abhik",
+            "designation":"Trainee Consultant",
+            "email":"abhiknayak@gmail.com",
+            "id":1
+        },
+        {
+            "name":"Deepak",
+            "designation":"Trainee Consultant",
+            "email":"Deepakroy@gmail.com",
+            "id":2
+        },
+        {
+            "name":"Ayaan",
+            "designation":"Trainee Consultant",
+            "email":"ayaanezaz@gmail.com",
+            "id":3
+        }
+        
+    ]
+}
