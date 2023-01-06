@@ -1,14 +1,19 @@
-import {Route} from "react-router-dom";
-import {Switch} from "route";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from "./components/Home";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Home/>
+    <div>
+      {/* <Home/> */}
+        <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          </Switch>
+        </Router>
+      
     </div>
-  
-  );
+  )
 }
 
-export default App;
+export default App
