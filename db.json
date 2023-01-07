@@ -1,34 +1,22 @@
 {
   "user": [
     {
-      "name": "Abhik",
-      "designation": "Trainee Consultant",
-      "email": "abhiknayak@gmail.com",
+      "name": "asdfsdffsadf",
+      "email": "abhiknayakabhik@gmail.com",
+      "designation": "wer",
       "id": 1
     },
     {
-      "name": "Deepak",
-      "designation": "Trainee Consultant",
-      "email": "Deepakroy@gmail.com",
+      "name": "rtewt",
+      "email": "abhiknayakabhik@gmail.com",
+      "designation": "rtewrt",
       "id": 2
     },
     {
-      "name": "Ayaan",
-      "designation": "Trainee Consultant",
-      "email": "ayaanezaz@gmail.com",
+      "name": "dfsa",
+      "email": "nayakabhik98@gmail.com",
+      "designation": "dsfs",
       "id": 3
-    },
-    {
-      "name": "Abhik",
-      "designation": "Trainee Consultant",
-      "email": "abhiknayak@gmail.com",
-      "id": 4
-    },
-    {
-      "name": "Deepak",
-      "designation": "Trainee Consultant",
-      "email": "Deepakroy@gmail.com",
-      "id": 5
     }
   ]
 }

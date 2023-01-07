@@ -6,13 +6,15 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import EmailIcon from '@mui/icons-material/Email';
 import { useDispatch , useSelector} from 'react-redux';
-import { addUser } from '../redux/action';
-import { useHistory } from 'react-router-dom';
+import { getSingleuser } from '../redux/action';
+import { addUser, updateUser } from '../redux/action';
+import { useHistory ,useParams} from 'react-router-dom';
 
 export default function Updateuser() {
     const dispatch = useDispatch();
-    const post = useSelector((state) => {return state});
-    console.log("post",post);
+    const {id} = useParams();
+    console.log(id);
+    const singleUser = useSelector((state) => {return state.data.user});
     const history = useHistory();
     const [state, setState] = useState({name:"",email:"",designation:"",});
     const { name, email, designation} = state;
@@ -30,10 +32,18 @@ export default function Updateuser() {
             setError("All fields must be Filled")
         }
         else{
-        dispatch(addUser(state));
+        dispatch(updateUser(id,state));
         setError("");
         }
     };
+
+    useEffect(()=>{
+            dispatch(getSingleuser(id));
+    },[],[id])
+
+    useEffect(()=>{
+        setState({...singleUser})
+    },[singleUser]);
     return (
         <Box sx={{ '& > :not(style)': { m: 1 } }}>
             <h2>Update User</h2>
