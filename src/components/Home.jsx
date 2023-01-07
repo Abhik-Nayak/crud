@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,8 +7,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Button, ButtonGroup } from '@mui/material';
 import {useDispatch, useSelector} from "react-redux";
-import {loadUsers} from "../redux/action";
+import {loadUsers,deleteUsers} from "../redux/action";
+import { useHistory } from 'react-router-dom';
+// import { ButtonGroup } from '@material-ui/core';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,49 +33,57 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
 
 const Home = () => {
+    const [del,setDel] = useState();
   // const classes=useStyles();
   const dispatch=useDispatch();
+  const history=useHistory();
+  const {users}= useSelector(state => state.data)
+
   useEffect(()=>{
     dispatch(loadUsers());
-  },[dispatch])
+  },[dispatch,del])
+
+  const handleDelete= (id,e) =>{
+
+    if(window.confirm("Are you sure you want to delete the user?")){
+        dispatch(deleteUsers(id));
+        setDel(id);
+    }
+}
 
   return (
     <div>
+      <Button onClick={()=> history.push("./createUser")}>
+        Create User
+      </Button>
        <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <StyledTableCell>Name</StyledTableCell>
+            <StyledTableCell align="right">Designation</StyledTableCell>
+            <StyledTableCell align="right">E-mail</StyledTableCell>
+             <StyledTableCell align="right"></StyledTableCell>
+           {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
+          {users.map((row) => (
+            <StyledTableRow key={row.id}>
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
+              <StyledTableCell align="right">{row.designation}</StyledTableCell>
+              <StyledTableCell align="right">{row.email}</StyledTableCell>
+              {/* <StyledTableCell align="right">{row.carbs}</StyledTableCell>*/}
+              <StyledTableCell align="center">
+                <ButtonGroup varient="contained" arial-label= "contained primary button group">
+                        <Button color="secondary" onClick={() => handleDelete(row.id)}>Delete</Button>
+                        <Button color="primary" onClick={()=> history.push(`./updateUser/${row.id}`)}>Update</Button>
+                </ButtonGroup>
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
