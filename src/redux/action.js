@@ -25,22 +25,22 @@ const userUpdated = () => ({
 })
 
 export const loadUsers = () => async (dispatch) => {
-    return function (dispatch) {
-        axios.get(api.getUers)
-            .then((resp) => {
-                dispatch(getUser(resp.data));
-            })
-            .catch((err) => console.log("err", err));
-    }
-    // try{
-    //     const response = await api.getUse;
-    //     console.log(response);
-    //     dispatch(getUser(response.data));
+    // return function (dispatch) {
+    //     axios.get(api.getUers)
+    //         .then((resp) => {
+    //             dispatch(getUser(resp.data));
+    //         })
+    //         .catch((err) => console.log("err", err));
+    // }
+    try{
+        const response = await api.getUse;
+        console.log(response);
+        dispatch(getUser(response.data));
 
-    //     // console.log(response);
-    //     // res.status(200).json(response.data);
-    //     // return dispatch(response.data);
-    // }catch(err){console.log("err", err);}
+        // console.log(response);
+        // res.status(200).json(response.data);
+        // return dispatch(response.data);
+    }catch(err){console.log("err", err);}
 }
 
 export const getSingleuser = (id) => {
