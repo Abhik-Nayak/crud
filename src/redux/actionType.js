@@ -1,5 +1,4 @@
-export const GET_USERS = 'GET_USERS';
-export const DELETE_USER = 'DELETE_USER';
-export const ADD_USER = 'ADD_USER';
-export const UPDATE_USER = 'UPDATE_USER';
-export const GET_SINGLE_USER = 'GET_SINGLE_USER';
+export const GET_GLOBALDATA = "GET_GLOBALDATA"
+export const GET_EXCHANGES = 'GET_EXCHANGES'
+export const GET_COINS = 'GET_COINS'
+export const GET_TRENDINGCOINS = 'TRENDING_COINS'
